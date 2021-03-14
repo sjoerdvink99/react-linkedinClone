@@ -3,6 +3,13 @@ import "./Sidebar.css";
 import { Avatar } from "@material-ui/core";
 
 export default function Sidebar() {
+  const recentItem = (topic) => (
+    <div className='sidebar__recentItems'>
+      <span className='sidebar__hash'>#</span>
+      <p>{topic}</p>
+    </div>
+  );
+
   return (
     <div className='sidebar'>
       <div className='sidebar__top'>
@@ -26,6 +33,11 @@ export default function Sidebar() {
       </div>
       <div className='sidebar__bottom'>
         <p>Recent</p>
+        {recentItem("reactjs")}
+        {recentItem("programming")}
+        {recentItem("softwareengineering")}
+        {recentItem("design")}
+        {recentItem("developer")}
       </div>
     </div>
   );

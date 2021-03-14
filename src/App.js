@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 
-const tijd = "01.02.00";
+const tijd = "01.33.00";
 
 function App() {
   return (
