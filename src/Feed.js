@@ -7,10 +7,13 @@ import {
   Subscriptions,
 } from "@material-ui/icons";
 import InputOption from "./InputOption";
+import Post from "./Post";
 import "./Feed.css";
 
 export default function Feed() {
   const [input, setInput] = useState("");
+  const [posts, setPosts] = useState([]);
+
   const handleSubmit = () => {
     // db stuff
   };
@@ -40,6 +43,14 @@ export default function Feed() {
           />
         </div>
       </div>
+      {posts.map((post) => (
+        <Post
+          name={post.name}
+          description={post.description}
+          message={post.message}
+          photoUrl={post.photoUrl}
+        />
+      ))}
     </div>
   );
 }
