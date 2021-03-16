@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   CalendarViewDay,
   Create,
@@ -9,13 +9,34 @@ import {
 import InputOption from "./InputOption";
 import Post from "./Post";
 import "./Feed.css";
+import { db } from "./firebase";
+import firebase from "firebase";
 
 export default function Feed() {
   const [input, setInput] = useState("");
   const [posts, setPosts] = useState([]);
 
-  const handleSubmit = () => {
-    // db stuff
+  useEffect(() => {
+    db.collection("posts").onSnapshot((snapshot) =>
+      setPosts(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      )
+    );
+  }, []);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    db.collection("posts").add({
+      name: "Sjoerd",
+      description: "test",
+      message: input,
+      photoUrl: "",
+      timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+    });
+    setInput("");
   };
 
   return (
@@ -43,12 +64,13 @@ export default function Feed() {
           />
         </div>
       </div>
-      {posts.map((post) => (
+      {posts.map(({ id, data: { name, description, message, photoUrl } }) => (
         <Post
-          name={post.name}
-          description={post.description}
-          message={post.message}
-          photoUrl={post.photoUrl}
+          key={id}
+          name={name}
+          description={description}
+          message={message}
+          photoUrl={photoUrl}
         />
       ))}
     </div>
