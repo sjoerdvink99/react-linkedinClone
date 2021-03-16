@@ -11,8 +11,10 @@ import Post from "./Post";
 import "./Feed.css";
 import { db } from "./firebase";
 import firebase from "firebase";
+import { useStateValue } from "./StateProvider";
 
 export default function Feed() {
+  const [{ user }, dispatch] = useStateValue();
   const [input, setInput] = useState("");
   const [posts, setPosts] = useState([]);
 
@@ -32,10 +34,10 @@ export default function Feed() {
   const handleSubmit = (e) => {
     e.preventDefault();
     db.collection("posts").add({
-      name: "Sjoerd",
-      description: "test",
+      name: user.diplayName,
+      description: user.email,
       message: input,
-      photoUrl: "",
+      photoUrl: user.photoUrl || "",
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
     });
     setInput("");

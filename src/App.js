@@ -4,11 +4,10 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Feed from "./Feed";
 import Login from "./Login";
+import Widgets from "./Widgets";
 import { useStateValue } from "./StateProvider";
 import { actionTypes } from "./reducer";
 import { auth } from "./firebase";
-
-const tijd = "03.21.00";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -42,6 +41,7 @@ function App() {
         <div className='app__body'>
           <Sidebar />
           <Feed />
+          <Widgets />
         </div>
       )}
     </div>

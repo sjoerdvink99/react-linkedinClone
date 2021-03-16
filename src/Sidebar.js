@@ -20,7 +20,11 @@ export default function Sidebar() {
           src='https://i.pinimg.com/originals/e8/76/f9/e876f9174f627daf2f6a7b66c7e6fe79.jpg'
           alt=''
         />
-        <Avatar className='sidebar__avatar' />
+        <Avatar
+          src={user.photoUrl}
+          className='sidebar__avatar'
+          alt={user.displayName}
+        />
         <h2>{user.displayName}</h2>
         <h4>{user.email}</h4>
       </div>
