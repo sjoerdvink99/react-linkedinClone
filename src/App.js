@@ -4,7 +4,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Feed from "./Feed";
 
-const tijd = "02.08.00";
+const tijd = "02.33.00";
 
 function App() {
   return (
