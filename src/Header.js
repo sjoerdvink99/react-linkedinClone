@@ -9,8 +9,20 @@ import {
   SupervisorAccount,
 } from "@material-ui/icons";
 import HeaderOption from "./HeaderOption";
+import { useStateValue } from "./StateProvider";
+import { actionTypes } from "./reducer";
+import { auth } from "./firebase";
 
 export default function Header() {
+  const [{ user }, dispatch] = useStateValue();
+
+  const logoutOfApp = () => {
+    dispatch({
+      action: actionTypes.LOG_OUT,
+    });
+    auth.signOut();
+  };
+
   return (
     <div className='header'>
       <div className='header__left'>
@@ -29,7 +41,7 @@ export default function Header() {
         <HeaderOption title='Jobs' Icon={BusinessCenter} />
         <HeaderOption title='Messaging' Icon={Chat} />
         <HeaderOption title='Notifications' Icon={Notifications} />
-        <HeaderOption avatar='#' title='Me' />
+        <HeaderOption avatar='' title='Me' onClick={logoutOfApp} />
       </div>
     </div>
   );

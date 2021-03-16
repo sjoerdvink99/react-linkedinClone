@@ -1,8 +1,11 @@
 import React from "react";
 import "./Sidebar.css";
 import { Avatar } from "@material-ui/core";
+import { useStateValue } from "./StateProvider";
 
 export default function Sidebar() {
+  const [{ user }, dispatch] = useStateValue();
+
   const recentItem = (topic) => (
     <div className='sidebar__recentItems'>
       <span className='sidebar__hash'>#</span>
@@ -18,8 +21,8 @@ export default function Sidebar() {
           alt=''
         />
         <Avatar className='sidebar__avatar' />
-        <h2>Sjoerd Vink</h2>
-        <h4>sjoerdvink1@gmail.com</h4>
+        <h2>{user.displayName}</h2>
+        <h4>{user.email}</h4>
       </div>
       <div className='sidebar__stats'>
         <div className='sidebar__stat'>
